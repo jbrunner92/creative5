@@ -8,6 +8,20 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 
+var mongoose = require('mongoose');
+var UserSchema = require('./schemas/UserSchema.json');
+var CommentSchema = require('./schemas/Comments.json');
+
+var db = mongoose.connection; //Saves the connection as a variable to use
+db.on('error', console.error.bind(console, 'connection error:')); //Checks for connection errors
+db.once('open', function() { //Lets us know when we're connected
+    console.log('Connected');
+});
+
+mongoose.connect('mongodb://localhost/trumpChatDB');
+var User = mongoose.model('User', mongoose.Schema(UserSchema));
+var Comment = mongoose.model('Comment', mongoose.Schema(CommentSchema));
+
 var app = express();
 
 // view engine setup

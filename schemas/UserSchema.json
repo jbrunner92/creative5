@@ -1,0 +1,8 @@
+{
+  "user_name": "String",
+  "password": "String",
+  "first_name": "String",
+  "last_name": "String",
+  "email": "String",
+  "created_date_time": "date"
+}

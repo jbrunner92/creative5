@@ -1,8 +1,31 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    background-image: url('https://i.redd.it/jxssbh383n0y.jpg');
+    background-size: 100%;
+    color: #FFFFFF;
+    opacity: .85;
 }
 
 a {
-  color: #00B7FF;
+    color: #00B7FF;
+}
+
+
+#commentsData {
+    list-style: none;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 15px;
+    height: -webkit-calc(70vh);
+    height: -moz-calc(70vh);
+    height: 70vh;
+    background-color: #333333;
+    opacity: .5;
+}
+
+.comment_data {
+    padding: 5px;
+}
+
+.name {
+    font-weight: bold;
 }

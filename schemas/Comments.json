@@ -1,0 +1,6 @@
+{
+  "comment": "String",
+  "likes": "Number",
+  "created_by": "String",
+  "created_date_time": "date"
+}
