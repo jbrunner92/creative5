@@ -72,9 +72,11 @@ router.post('/comments', function(req, res, next) {
     }
 
     AuthTokenModel.getAuthToken(data, function(data) {
-        if (data && data.user) {
+        if (data || data.user) {
+            console.log("In IF statement");
             CommentModel.addComment(req.body.newcomment, function(data) {
                 if (data !== null) {
+                    console.log("In other IF statement");
                     res.sendStatus(200);
                 }
             });

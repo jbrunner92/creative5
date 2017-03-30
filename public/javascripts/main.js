@@ -19,6 +19,7 @@ angular.module('comment', [])
                 $scope.comments.push(data);
                 console.log("Post worked");
             });
+            $scope.getAll();
         };
 
         $scope.getAll = function() {
