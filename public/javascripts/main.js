@@ -57,7 +57,7 @@ angular.module('comment', [])
             if (data.auth_token) {
                 $scope.authToken = data.auth_token;
 
-                displayAlert('Welcome, ' + data.user_name, 'success', 2000, function() {
+                $scope.displayAlert('Welcome, ' + data.user_name, 'success', 2000, function() {
                     $('#login-section').fadeOut(function() {
                         $('#comment-section').fadeIn();
                     });
