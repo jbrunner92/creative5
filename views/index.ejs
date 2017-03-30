@@ -1,19 +1,6 @@
 <!DOCTYPE html>
 <html>
-<<<<<<< HEAD
-    <head>
-        <title><%= title %></title>
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-        <link rel='stylesheet' href='/stylesheets/style.css' />
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 
-  <script src="/javascripts/main.js"></script>
-	 </head>
-    <body ng-app="comment" ng-controller="MainCtrl">
-=======
 <head>
     <title><%= title %></title>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
@@ -54,59 +41,51 @@
             </div>
         </form>
     </div>
+    
     <div id="comment-section" class="container">
->>>>>>> origin/master
         <div class="row">
             <h1 class="text-center" style="color: blue;">Trump Chat</h1>
             <div id="comments" class="col-sm-12">
-                <ul id="commentsData">
-<<<<<<< HEAD
-              		 <div ng-repeat="comment in comments | orderBy: '-upvotes'">
-     <span class="glyphicon glyphicon-remove" ng-click="delete(comment)"></span>
-     <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(comment)"></span>
-    {{comment.username}} {{comment.title}} - upvotes: {{comment.upvotes}}
-  </div>
+            <ul id="commentsData">
+                <div ng-repeat="comment in comments | orderBy: '-upvotes'">
+                    <span class="glyphicon glyphicon-remove" ng-click="delete(comment)"></span>
+                    <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(comment)"></span>
+                    {{comment.username}} {{comment.title}} - upvotes: {{comment.upvotes}}
+                </div>
 	        </ul>
             </div>
         </div>
+    
         <div class="container">
             <form id="commentForm" action="" style="margin-top: 30px;">
                 <div class="form-group row">
                     <div class="col-md-1 col-xs-2">
-                   <label for="name">Name: </label>
+                        <label for="name">Name: </label>
                     </div>
                     <div class="col-xs-4">
                         <input type="text" id="name" ng-model="formContentUser"  class="form-control" placeholder="Name">
                     </div>
                 </div>
-=======
-                    <div ng-repeat="comment in comments | orderBy: '-upvotes'">
-                        <span class="glyphicon glyphicon-remove" ng-click="delete(comment)"></span>
-                        <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(comment)"></span>
-                        {{comment.title}} - upvotes: {{comment.upvotes}}
-                    </div>
-                </ul>
-            </div>
+            </form>
         </div>
+    
         <div class="container">
             <form id="commentForm" action="">
->>>>>>> origin/master
                 <div class="form-group row">
                     <div class="col-md-1 col-xs-2">
                         <label for="comment">{{userName}}</label>
                     </div>
                     <div class="col-md-10 col-xs-9">
-<<<<<<< HEAD
-                        <input  type="text" ng-model="formContent" id="comment" class="form-control" placeholder="Comment">
-=======
+                        <!--
+<input  type="text" ng-model="formContent" id="comment" class="form-control" placeholder="Comment">
+I have commented this one out for now, it seems to be causing issues.
+    - Tanner
+-->
                         <input type="text" id="comment" class="form-control" placeholder="Comment" />
->>>>>>> origin/master
                     </div>
                     <div class="col-xs-1">
                         <button type="submit" id="postComment" class="btn btn-primary">Send</button>
                     </div>
-                </div>
-                <div class="form-group row">
                 </div>
             </form>
         </div>
