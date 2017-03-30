@@ -1,42 +1,69 @@
 var express = require('express');
 var router = express.Router();
+var http = require('http').Server(router);
 var mongoose = require('mongoose');
-var Comment = mongoose.model('Comment');
+
+var db = mongoose.connection; //Saves the connection as a variable to use
+db.on('error', console.error.bind(console, 'connection error:')); //Checks for connection errors
+db.once('open', function() { //Lets us know when we're connected
+    console.log('Connected');
+});
+
+mongoose.connect('mongodb://localhost/trumpChatDB');
+
+var UserModel = require('../Models/User.js');
+var CommentModel = require('../Models/Comment.js');
+var AuthTokenModel = require('../Models/AuthToken.js');
 
 /* GET home page. */
-
-router.post('/login', function(req, res, next) {
-    var userName = req.body.userName;
-    var password = req.body.password;
-
-    User.find({ "userName": userName, "password": password }, function(err, user) {
-        if (err) {
-            return console.error(err);
-        } else {
-            console.log(user);
-
-            res.json(user.userName);
-        }
-    })
-});
 
 router.get('/', function(req, res, next) {
     res.render('index', { title: 'Creative Project 5' });
 });
 
+router.post('/login', function(req, res, next) {
+    var userName = UserModel.login(req.body, function(user) {
+        if (user.length === 1) {
+            generateUserAuthToken(user[0].user_name, function(data) {
+                console.log(data);
+                res.json(data);
+            });
+        } else {
+            console.log(user);
+        }
+    });
+});
+
+router.post('/register', function(req, res, next) {
+    var userName = req.body.user_name;
+    var password = req.body.password;
+
+    UserModel.getUserName(userName, function(user) {
+        if (user.length < 1) {
+            UserModel.addUser(req.body, function(userName) {
+                generateUserAuthToken(userName, function(data) {
+                    console.log(data);
+                    res.json(data);
+                });
+            });
+        } else {
+            res.json({"message": "Username already exists. Please pick another one."});
+        }
+    });
+});
+
 router.get('/comments', function(req, res, next) {
-  Comment.find(function(err, comments){
-    if(err){ return next(err); }
-    res.json(comments);
-  });
+    CommentModel.getComments(function(comments) {
+        res.json(comments);
+    })
 });
 
 router.post('/comments', function(req, res, next) {
-  var comment = new Comment(req.body);
-  comment.save(function(err, comment){
-    if(err){ return next(err); }
-    res.json(comment);
-  });
+    CommentModel.addComment(req.body, function(data) {
+        if (data !== null) {
+            res.sendStatus(200);
+        }
+    });
 });
 
 router.param('comment', function(req, res, next, id) {
@@ -66,5 +93,26 @@ router.delete('/comments/:comment', function(req, res) {
   res.json(req.comment);
 });
 
+function generateUserAuthToken(userName, callback) {
+    var authToken = guid(),
+        data = {
+            auth_token: authToken,
+            user_name: userName
+        }
+
+    return AuthTokenModel.generateAuthToken(data, function(data) {
+        callback(data);
+    });
+}
+
+function guid() {
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
+  }
+  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+    s4() + '-' + s4() + s4() + s4();
+}
 
 module.exports = router;
