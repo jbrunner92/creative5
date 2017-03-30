@@ -70,11 +70,11 @@ router.post('/comments', function(req, res, next) {
     var data = {
         auth_token: req.body.authorization
     }
-
+    console.log("Made it this far");
     AuthTokenModel.getAuthToken(data, function(data) {
         if (data || data.user) {
             console.log("In IF statement");
-            CommentModel.addComment(req.body.newcomment, function(data) {
+            CommentModel.addComment(data.body.newcomment, function(data) {
                 if (data !== null) {
                     console.log("In other IF statement");
                     res.sendStatus(200);
