@@ -66,33 +66,6 @@ router.post('/comments', function(req, res, next) {
     });
 });
 
-router.param('comment', function(req, res, next, id) {
-  var query = Comment.findById(id);
-  query.exec(function (err, comment){
-    if (err) { return next(err); }
-    if (!comment) { return next(new Error("can't find comment")); }
-    req.comment = comment;
-    return next();
-  });
-});
-
-router.get('/comments/:comment', function(req, res) {
-  res.json(req.comment);
-});
-
-router.put('/comments/:comment/upvote', function(req, res, next) {
-  req.comment.upvote(function(err, comment){
-    if (err) { return next(err); }
-    res.json(comment);
-  });
-});
-
-router.delete('/comments/:comment', function(req, res) {
-  console.log("in Delete");
-  req.comment.remove();
-  res.json(req.comment);
-});
-
 function generateUserAuthToken(userName, callback) {
     var authToken = guid(),
         data = {
