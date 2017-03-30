@@ -1,6 +1,5 @@
 $(document).ready(function(){
     var authToken;
-    var username;
 
     $("#postComment").click(function(){
         var myobj = { comment:$("#comment").val(), likes: 0, created_by:
