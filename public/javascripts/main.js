@@ -108,15 +108,7 @@ angular.module('comment', [])
         $scope.comments.push(data);
       });
     };
-    $scope.upvote = function(comment) {
-      return $http.put('/comments/' + comment._id + '/upvote')
-        .success(function(data){
-          console.log("upvote worked");
-          comment.upvotes = data.upvotes;
-        });
-    };
-        $scope.incrementUpvotes = function(comment) {
-          $scope.upvote(comment);
+        
     };
     $scope.getAll = function() {
       return $http.get('/comments').success(function(data){
