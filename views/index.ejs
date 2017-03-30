@@ -47,10 +47,8 @@
             <h1 class="text-center" style="color: blue;">Trump Chat</h1>
             <div id="comments" class="col-sm-12">
             <ul id="commentsData">
-                <div ng-repeat="comment in comments | orderBy: '-upvotes'">
-                    <span class="glyphicon glyphicon-remove" ng-click="delete(comment)"></span>
-                    <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(comment)"></span>
-                    {{comment.username}} {{comment.title}} - upvotes: {{comment.upvotes}}
+                <div ng-repeat="comment in comments">
+                    {{comment.username}} {{comment.title}}
                 </div>
 	        </ul>
             </div>
