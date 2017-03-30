@@ -68,7 +68,7 @@ router.get('/comments', function(req, res, next) {
 
 router.post('/comments', function(req, res, next) {
     var data = {
-        auth_token: req.body.authorization;
+        auth_token: req.body.authorization
     }
 
     AuthTokenModel.getAuthToken(data, function(data) {
