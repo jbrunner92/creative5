@@ -48,7 +48,7 @@
             <div id="comments" class="col-sm-12">
             <ul id="commentsData">
                 <div ng-repeat="comment in comments">
-                    {{comment.username}} {{comment.title}}
+                    {{comment.created_by}} {{comment.comment}}
                 </div>
 	        </ul>
             </div>
@@ -64,7 +64,7 @@
                         <input  type="text" ng-model="formContent" id="comment" class="form-control" placeholder="Comment">
                     </div>
                     <div class="col-xs-1">
-                        <button type="button" id="postComment" class="btn btn-primary" ng-click="addComment(); $event.stopPropagation();">Send</button>
+                        <button type="button" id="postComment" class="btn btn-primary" ng-click="addComment()">Send</button>
                     </div>
                 </div>
             </form>

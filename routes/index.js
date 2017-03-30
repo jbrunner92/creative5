@@ -80,7 +80,7 @@ router.post('/comments', function(req, res, next) {
                 created_by: data[0].user_name,
                 created_date_time: now
             };
-            console.log(commentData);
+
             CommentModel.addComment(commentData, function(data) {
                 if (data !== null) {
                     res.json(data);
