@@ -53,9 +53,17 @@ router.post('/register', function(req, res, next) {
 });
 
 router.get('/comments', function(req, res, next) {
-    CommentModel.getComments(function(comments) {
-        res.json(comments);
-    })
+    var data = {
+        auth_token: req.headers.authorization
+    }
+
+    AuthTokenModel.getAuthToken(data, function(data) {
+        if (data && data.user_name) {
+            CommentModel.getComments(function(comments) {
+                res.json(comments);
+            });
+        }
+    });
 });
 
 router.post('/comments', function(req, res, next) {
