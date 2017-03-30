@@ -7,15 +7,17 @@ angular.module('comment', [])
         $scope.userName = '';
 
         $scope.addComment = function() {
+            console.log("hi");
             var data = {
                 authorization: $scope.authToken,
                 newcomment: {title:$scope.formContent}
             }
-
             $scope.formContent='';
 
             $http.post('/comments', data).success(function(data){
+                console.log("Post started");
                 $scope.comments.push(data);
+                console.log("Post worked");
             });
         };
 
@@ -36,9 +38,8 @@ angular.module('comment', [])
 
         $scope.login = function() {
             var data = { "user_name": $('#username').val(), "password": $('#password').val() };
-            console.log("you made it");
-            $.post('login', data, function(res) { 
-                console.log(res);
+            $.post('login', data, function(res) {
+                $scope.isEmptyObj(res);
                 $scope.checkAuthTokenExists(res);
 
             });
@@ -81,6 +82,12 @@ angular.module('comment', [])
                     callback();
                 }
             }, length);
+        }
+        
+        $scope.isEmptyObj = function (obj) {
+            if (obj.isEmptyObject) {
+                    $scope.displayAlert('Username and/or password is incorrect.', 'danger', 5000);
+                }
         }
 
         $scope.getAll();
