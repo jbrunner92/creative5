@@ -4,13 +4,12 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var mongoose = require('mongoose');
+require('./models/Comments');
 var index = require('./routes/index');
 var users = require('./routes/users');
 
-var mongoose = require('mongoose');
 var UserSchema = require('./schemas/UserSchema.json');
-var CommentSchema = require('./schemas/Comments.json');
 var AuthTokenSchema = require('./schemas/AuthToken.json');
 
 var db = mongoose.connection; //Saves the connection as a variable to use
@@ -21,9 +20,7 @@ db.once('open', function() { //Lets us know when we're connected
 
 mongoose.connect('mongodb://localhost/trumpChatDB');
 var User = mongoose.model('User', mongoose.Schema(UserSchema));
-var Comment = mongoose.model('Comment', mongoose.Schema(CommentSchema));
 var AuthToken = mongoose.model('AuthToken', mongoose.Schema(AuthTokenSchema));
-
 var app = express();
 
 // view engine setup
@@ -60,3 +57,9 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+~                                                                                                                   
+~                                                                                                                   
+~                                                                                                                   
+~                                                                                                                   
+~                                                                                                                   
+~                            
