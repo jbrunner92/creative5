@@ -9,6 +9,10 @@ a {
     color: #00B7FF;
 }
 
+#login-section {
+    background-color: #333333;
+    //opacity: .5;
+}
 
 #commentsData {
     list-style: none;
@@ -28,4 +32,29 @@ a {
 
 .name {
     font-weight: bold;
+}
+
+#comment-section {
+    display: none;
+}
+
+.space {
+    height: 30px;
+    widht: 100%;
+}
+
+.alerts {
+    position: fixed;
+    z-index: 100;
+    left: 25%;
+    right: 25%;
+    top: 0;
+}
+
+.alert-msg {
+    display: none;
+    padding: 5px;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    opacity: 1;
 }
