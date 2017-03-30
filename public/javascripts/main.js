@@ -7,11 +7,14 @@ angular.module('comment', [])
         $scope.userName = '';
 
         $scope.addComment = function() {
-            var newcomment = {title:$scope.formContent};
+            var data = {
+                authorization: $scope.authToken,
+                newcomment: {title:$scope.formContent}
+            }
 
             $scope.formContent='';
 
-            $http.post('/comments', newcomment).success(function(data){
+            $http.post('/comments', data).success(function(data){
                 $scope.comments.push(data);
             });
         };

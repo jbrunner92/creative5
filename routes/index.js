@@ -67,9 +67,17 @@ router.get('/comments', function(req, res, next) {
 });
 
 router.post('/comments', function(req, res, next) {
-    CommentModel.addComment(req.body, function(data) {
-        if (data !== null) {
-            res.sendStatus(200);
+    var data = {
+        auth_token: req.body.authorization;
+    }
+
+    AuthTokenModel.getAuthToken(data, function(data) {
+        if (data && data.user) {
+            CommentModel.addComment(req.body.newcomment, function(data) {
+                if (data !== null) {
+                    res.sendStatus(200);
+                }
+            });
         }
     });
 });
