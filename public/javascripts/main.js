@@ -13,15 +13,13 @@ angular.module('comment', [])
             }
 
             $.post('/comments', data, function(res) {
-                $scope.comments.push(res);
+                $scope.getAll();
             });
-
-            $scope.getAll();
         };
 
         $scope.getAll = function() {
-            return $http.get('/comments').success(function(data){
-                angular.copy(data, $scope.comments);
+            $.get('/comments?q=' + $scope.authToken, function(data){
+                $scope.comments = data;
             });
         };
 
@@ -30,8 +28,8 @@ angular.module('comment', [])
             $http.delete('/comments/' + comment._id )
                 .success(function(data){
                     console.log("delete worked");
+                    $scope.getAll();
                 });
-            $scope.getAll();
         };
 
         $scope.login = function() {
@@ -55,6 +53,7 @@ angular.module('comment', [])
                 $scope.authToken = data.auth_token;
 
                 $scope.displayAlert('Welcome, ' + data.user_name, 'success', 2000, function() {
+                    $scope.getAll();
                     $('#login-section').fadeOut(function() {
                         $('#comment-section').fadeIn();
                     });
@@ -82,10 +81,8 @@ angular.module('comment', [])
         
         $scope.isEmptyObj = function (obj) {
             if (obj.isEmptyObject) {
-                    $scope.displayAlert('Username and/or password is incorrect.', 'danger', 5000);
-                }
+                $scope.displayAlert('Username and/or password is incorrect.', 'danger', 5000);
+            }
         }
-
-        $scope.getAll();
     }
 ]);

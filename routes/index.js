@@ -54,11 +54,11 @@ router.post('/register', function(req, res, next) {
 
 router.get('/comments', function(req, res, next) {
     var data = {
-        auth_token: req.headers.authorization
+        auth_token: req.query.q
     }
 
     AuthTokenModel.getAuthToken(data, function(data) {
-        if (data && data.user_name) {
+        if (data[0] && data[0].user_name) {
             CommentModel.getComments(function(comments) {
                 res.json(comments);
             });

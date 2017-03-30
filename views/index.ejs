@@ -48,7 +48,9 @@
             <div id="comments" class="col-sm-12">
             <ul id="commentsData">
                 <div ng-repeat="comment in comments">
-                    {{comment.created_by}} {{comment.comment}}
+                    <div class="row">
+                        <span class="commentInfo"><strong>{{comment.created_by}}:</strong> {{comment.comment}}</span>
+                    </div>
                 </div>
 	        </ul>
             </div>

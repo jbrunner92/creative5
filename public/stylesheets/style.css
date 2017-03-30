@@ -11,7 +11,6 @@ a {
 
 #login-section {
     background-color: #333333;
-    //opacity: .5;
 }
 
 #commentsData {
@@ -23,7 +22,7 @@ a {
     height: -moz-calc(70vh);
     height: 70vh;
     background-color: #333333;
-    opacity: .5;
+    overflow: auto;
 }
 
 .comment_data {
