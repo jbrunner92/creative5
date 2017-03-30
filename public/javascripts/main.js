@@ -36,7 +36,7 @@ angular.module('comment', [])
 
         $scope.login = function() {
             var data = { "user_name": $('#username').val(), "password": $('#password').val() };
-            
+            console.log("you made it");
             $.post('login', data, function(res) { 
                 console.log(res);
                 $scope.checkAuthTokenExists(res);
