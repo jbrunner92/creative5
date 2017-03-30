@@ -11,6 +11,7 @@ var users = require('./routes/users');
 var mongoose = require('mongoose');
 var UserSchema = require('./schemas/UserSchema.json');
 var CommentSchema = require('./schemas/Comments.json');
+var AuthTokenSchema = require('./schemas/AuthToken.json');
 
 var db = mongoose.connection; //Saves the connection as a variable to use
 db.on('error', console.error.bind(console, 'connection error:')); //Checks for connection errors
@@ -21,6 +22,7 @@ db.once('open', function() { //Lets us know when we're connected
 mongoose.connect('mongodb://localhost/trumpChatDB');
 var User = mongoose.model('User', mongoose.Schema(UserSchema));
 var Comment = mongoose.model('Comment', mongoose.Schema(CommentSchema));
+var AuthToken = mongoose.model('AuthToken', mongoose.Schema(AuthTokenSchema));
 
 var app = express();
 
