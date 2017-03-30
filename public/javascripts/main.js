@@ -8,12 +8,20 @@ angular.module('comment', [])
 
         $scope.addComment = function() {
             var newcomment = {title:$scope.formContent};
+
             $scope.formContent='';
 
             $http.post('/comments', newcomment).success(function(data){
                 $scope.comments.push(data);
             });
         };
+
+        $scope.getAll = function() {
+            return $http.get('/comments').success(function(data){
+                angular.copy(data, $scope.comments);
+            });
+        };
+
 
         $scope.delete = function(comment) {
             $http.delete('/comments/' + comment._id )
