@@ -59,14 +59,14 @@
         <div class="container">
             <form id="commentForm" action="">
                 <div class="form-group row">
-                    <div class="col-md-1 col-xs-2">
-                        <label for="comment">{{userName}}</label>
-                    </div>
-                    <div class="col-md-10 col-xs-9">
+                    <div class="col-md-9 col-xs-9">
                         <input  type="text" ng-model="formContent" id="comment" class="form-control" placeholder="Comment">
                     </div>
                     <div class="col-xs-1">
                         <button type="button" id="postComment" class="btn btn-primary" ng-click="addComment()">Send</button>
+                    </div>
+                    <div class="col-xs-1">
+                        <button type="button" id="getAllComments" class="btn btn-default" ng-click="getAll()">Get All Comments</button>
                     </div>
                 </div>
             </form>

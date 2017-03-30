@@ -6,7 +6,7 @@ var Comment = mongoose.model('Comment', mongoose.Schema(CommentSchema));
 
 module.exports = {
     getComments: function(callback) {
-        Comment.find(function(err, comments){
+        Comment.find({}, function(err, comments){
             if(err){
                 return next(err);
             }
