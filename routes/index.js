@@ -11,9 +11,9 @@ db.once('open', function() { //Lets us know when we're connected
 
 mongoose.connect('mongodb://localhost/trumpChatDB');
 
-var UserModel = require('../Models/User.js');
-var CommentModel = require('../Models/Comment.js');
-var AuthTokenModel = require('../Models/AuthToken.js');
+var UserModel = require('../models/User.js');
+var CommentModel = require('../models/Comment.js');
+var AuthTokenModel = require('../models/AuthToken.js');
 
 /* GET home page. */
 

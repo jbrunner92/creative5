@@ -17,7 +17,7 @@ module.exports = {
                 callback(post);
             }
         });
-    }
+    },
 
     getAuthToken: function (data, callback) {
         AuthToken.find({ "auth_token": data }, function() {
