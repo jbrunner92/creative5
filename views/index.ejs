@@ -7,7 +7,9 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <link rel='stylesheet' href='/stylesheets/style.css' />
-  <script src="javascripts/main.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+  <script src="/javascripts/main.js"></script>
 	 </head>
     <body ng-app="comment" ng-controller="MainCtrl">
         <div class="row">
@@ -17,7 +19,7 @@
               		 <div ng-repeat="comment in comments | orderBy: '-upvotes'">
      <span class="glyphicon glyphicon-remove" ng-click="delete(comment)"></span>
      <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(comment)"></span>
-    {{comment.title}} - upvotes: {{comment.upvotes}}
+    {{comment.username}} {{comment.title}} - upvotes: {{comment.upvotes}}
   </div>
 	        </ul>
             </div>
@@ -26,10 +28,10 @@
             <form id="commentForm" action="" style="margin-top: 30px;">
                 <div class="form-group row">
                     <div class="col-md-1 col-xs-2">
-                        <label for="name">Name: </label>
+                   <label for="name">Name: </label>
                     </div>
                     <div class="col-xs-4">
-                        <input type="text" id="name" class="form-control" placeholder="Name">
+                        <input type="text" id="name" ng-model="formContentUser"  class="form-control" placeholder="Name">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -37,10 +39,10 @@
                         <label for="comment">comment: </label>
                     </div>
                     <div class="col-md-10 col-xs-9">
-                        <input type="text" id="comment" class="form-control" placeholder="Comment">
+                        <input  type="text" ng-model="formContent" id="comment" class="form-control" placeholder="Comment">
                     </div>
                     <div class="col-xs-1">
-                        <button type="button" id="postComment" class="btn btn-primary">Send</button>
+                        <button type="submit" id="postComment" class="btn btn-primary">Send</button>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -49,3 +51,4 @@
         </div>
     </body>
 </html>
+
