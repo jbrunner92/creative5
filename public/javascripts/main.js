@@ -101,7 +101,7 @@ angular.module('comment', [])
     $scope.comments = [];
     $scope.addComment = function() {
 
-      var newcomment = {title:$scope.formContent,upvotes:0};
+      var newcomment = {title:$scope.formContent,};
       $scope.formContent='';
 
       $http.post('/comments', newcomment).success(function(data){
