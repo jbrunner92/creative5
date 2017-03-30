@@ -20,7 +20,7 @@ module.exports = {
     },
 
     getAuthToken: function (data, callback) {
-        AuthToken.find(data, function() {
+        AuthToken.find(data, function(err, post) {
             if (err) {
                 return console.error(err);
             } else {
