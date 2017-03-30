@@ -14,7 +14,7 @@ module.exports = {
         });
     },
     addComment: function(data, callback) {
-        var comment = new Comment(req.body);
+        var comment = new Comment(data);
 
         comment.save(function(err, comment){
             if(err){

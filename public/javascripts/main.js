@@ -7,18 +7,15 @@ angular.module('comment', [])
         $scope.userName = '';
 
         $scope.addComment = function() {
-            console.log("hi");
             var data = {
                 authorization: $scope.authToken,
-                newcomment: {title:$scope.formContent}
+                newcomment: $scope.formContent
             }
-            $scope.formContent='';
 
-            $http.post('/comments', data).success(function(data){
-                console.log("Post started");
-                $scope.comments.push(data);
-                console.log("Post worked");
+            $.post('/comments', data, function(res) {
+                $scope.comments.push(res);
             });
+
             $scope.getAll();
         };
 
@@ -40,9 +37,7 @@ angular.module('comment', [])
         $scope.login = function() {
             var data = { "user_name": $('#username').val(), "password": $('#password').val() };
             $.post('login', data, function(res) {
-                $scope.isEmptyObj(res);
                 $scope.checkAuthTokenExists(res);
-
             });
         };
 
@@ -56,7 +51,7 @@ angular.module('comment', [])
 
         $scope.checkAuthTokenExists = function(data) {
             console.log(data);
-            if (data.auth_token) {
+            if (data !== null && data.auth_token) {
                 $scope.authToken = data.auth_token;
 
                 $scope.displayAlert('Welcome, ' + data.user_name, 'success', 2000, function() {
@@ -64,7 +59,7 @@ angular.module('comment', [])
                         $('#comment-section').fadeIn();
                     });
                 });
-            } else if (data.message) {
+            } else if (data !== null && data.message) {
                 $scope.displayAlert(data.message, 'danger', 5000);
             } else {
                 $scope.displayAlert('Username and/or password is incorrect.', 'danger', 5000);

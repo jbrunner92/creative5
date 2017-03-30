@@ -29,7 +29,7 @@ router.post('/login', function(req, res, next) {
                 res.json(data);
             });
         } else {
-            console.log(user);
+            res.json(null);
         }
     });
 });
@@ -68,16 +68,22 @@ router.get('/comments', function(req, res, next) {
 
 router.post('/comments', function(req, res, next) {
     var data = {
-        auth_token: req.body.authorization
-    }
-    console.log("Made it this far");
+            auth_token: req.body.authorization
+        };
+
     AuthTokenModel.getAuthToken(data, function(data) {
-        if (data || data.user) {
-            console.log("In IF statement");
-            CommentModel.addComment(data.body.newcomment, function(data) {
+        if (data[0] && data[0].user_name) {
+            var now = new Date();
+
+            var commentData = {
+                comment: req.body.newcomment,
+                created_by: data[0].user_name,
+                created_date_time: now
+            };
+            console.log(commentData);
+            CommentModel.addComment(commentData, function(data) {
                 if (data !== null) {
-                    console.log("In other IF statement");
-                    res.sendStatus(200);
+                    res.json(data);
                 }
             });
         }
