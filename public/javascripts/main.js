@@ -36,9 +36,11 @@ angular.module('comment', [])
 
         $scope.login = function() {
             var data = { "user_name": $('#username').val(), "password": $('#password').val() };
-
-            $.post('login', data, function(res) {
+            
+            $.post('login', data, function(res) { 
+                console.log(res);
                 $scope.checkAuthTokenExists(res);
+
             });
         };
 
@@ -51,6 +53,7 @@ angular.module('comment', [])
         };
 
         $scope.checkAuthTokenExists = function(data) {
+            console.log(data);
             if (data.auth_token) {
                 $scope.authToken = data.auth_token;
 
